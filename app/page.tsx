@@ -38,7 +38,7 @@ export default function Home() {
       {/* HEADER BAR */}
       <div style={{ backgroundColor: "var(--navy)", borderBottom: "4px solid var(--gold-light)" }} className="px-6 py-4 text-center">
         <p style={{ color: "var(--gold-light)" }} className="text-sm font-bold tracking-widest uppercase">
-          Free for Mid-Career Professionals · No Credit Card Required
+          Free · Instant Access · No Credit Card Required
         </p>
       </div>
 
@@ -47,14 +47,14 @@ export default function Home() {
         <div className="max-w-3xl mx-auto text-center">
           <div className="section-tag mb-4">Free Instant Access</div>
           <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-            Feeling Stuck, Unfulfilled, or Unsure<br className="hidden md:block" />
-            About Your Next Career Move?
+            Feeling Stuck, Unfulfilled,<br className="hidden md:block" />
+            or Just Knowing There's More?
           </h1>
           <p className="text-xl text-gray-300 mb-2 leading-relaxed">
             Get instant clarity with your <strong style={{ color: "var(--gold-light)" }}>Free 2-Page Life Audit</strong> + 12-minute walkthrough video.
           </p>
           <p className="text-gray-400 mb-10">
-            Uncover what's holding you back and discover simple next steps toward more fulfillment — in under 15 minutes.
+            Uncover what's draining you and discover simple next steps toward more fulfillment — in under 15 minutes.
           </p>
 
           {/* VIDEO PLACEHOLDER */}
@@ -97,7 +97,7 @@ export default function Home() {
           </div>
 
           <p className="text-gray-500 text-sm mt-6">
-            Join other mid-career professionals who finally got clear on their path in under 15 minutes.
+            Join others who finally got clear on what they want — in under 15 minutes.
           </p>
         </div>
       </section>
@@ -135,12 +135,12 @@ export default function Home() {
           </h2>
           <div className="grid md:grid-cols-2 gap-5 text-left max-w-2xl mx-auto mb-10">
             {[
-              "You feel dissatisfied with where your career is heading",
-              "You've been passed over for promotions and aren't sure why",
-              "You're unclear about your next chapter, even after years of experience",
               "You work hard but feel like something important is missing",
-              "You want more meaning, not just a higher salary",
-              "You're ready to gain real direction — not just motivation",
+              "You're not sure why you feel unfulfilled — you just know you do",
+              "Life looks fine on paper, but something inside is restless",
+              "You keep putting off the big questions about what you really want",
+              "You want more meaning, not just more productivity",
+              "You're ready for real direction — not just motivation",
             ].map((item, i) => (
               <div key={i} className="flex gap-3">
                 <CheckCircle size={18} style={{ color: "var(--gold-light)", flexShrink: 0 }} className="mt-0.5" />
@@ -149,7 +149,7 @@ export default function Home() {
             ))}
           </div>
           <p style={{ color: "var(--navy)", backgroundColor: "var(--warm-tan)", borderLeft: "5px solid var(--gold-light)" }} className="text-left p-5 rounded-r-xl text-lg font-medium max-w-2xl mx-auto">
-            This was built for mid-career professionals who feel capable but lost — and are ready to stop waiting for clarity to arrive on its own.
+            This was built for people who feel capable but lost — and are ready to stop waiting for clarity to arrive on its own.
           </p>
         </div>
       </section>
@@ -166,6 +166,7 @@ export default function Home() {
             "I know what it feels like to be capable and lost at the same time. For years I moved through jobs and roles — always working hard — but never quite landing in a place that felt like mine. This audit is the starting point I wish someone had handed me twenty years ago."
           </p>
           <p style={{ color: "var(--gold-light)" }} className="font-bold mt-4">— Jason St. Gelais</p>
+          <a href="https://stgelaisleadership.com" target="_blank" rel="noopener noreferrer" style={{ color: "var(--gold-light)" }} className="text-sm mt-2 inline-block opacity-70 hover:opacity-100">stgelaisleadership.com →</a>
         </div>
       </section>
 
