@@ -19,7 +19,7 @@ export default function Workshop() {
         <div className="max-w-3xl mx-auto text-center">
           <div className="section-tag mb-4">5-Session Live Workshop</div>
           <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-6">
-            Master Your Goals —<br />
+            You Are the Goal —<br />
             <span style={{ color: "var(--gold-light)" }}>With Jason Beside You</span>
           </h1>
           <p className="text-xl text-gray-300 mb-10 leading-relaxed">
@@ -157,5 +157,6 @@ export default function Workshop() {
     </main>
   );
 }
+
 
 
