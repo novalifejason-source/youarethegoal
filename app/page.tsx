@@ -157,10 +157,12 @@ export default function Home() {
       {/* ABOUT JASON */}
       <section style={{ backgroundColor: "var(--navy)" }} className="px-6 py-16">
         <div className="max-w-3xl mx-auto text-center">
-          <div className="section-tag mb-3">Created By</div>
+          <div className="flex justify-center mb-5">
+            <img src="/Certified Trainer.png" alt="Maxwell Leadership Certified Trainer" width={80} height={80} className="object-contain" />
+          </div>
           <h2 className="text-3xl font-bold text-white mb-6">Jason St. Gelais</h2>
           <p className="text-gray-300 text-lg leading-relaxed mb-6 max-w-2xl mx-auto">
-            Bachelor's in IT · MBA · Master of Science in Leadership · McKinsey Leadership Trained · Maxwell Leadership Certified Team Member
+            Bachelor's in IT · MBA · Master of Science in Leadership · McKinsey &amp; Company Management Accelerator Graduate · Maxwell Leadership Certified
           </p>
           <p className="text-gray-400 leading-relaxed max-w-2xl mx-auto">
             "I know what it feels like to be capable and lost at the same time. For years I moved through jobs and roles — always working hard — but never quite landing in a place that felt like mine. This audit is the starting point I wish someone had handed me twenty years ago."
