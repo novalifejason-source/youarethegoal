@@ -1,0 +1,890 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 15-Minute Life Audit — Jason St Gelais</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:       #1C2B3A;
+    --gold:       #8B6914;
+    --gold-light: #C9A84C;
+    --gold-pale:  #F0E4C0;
+    --cream:      #FAF7F2;
+    --warm-tan:   #EDE0C4;
+    --warm-mid:   #D4C5A0;
+    --warm-dark:  #6B5A3E;
+    --text-dark:  #1A1A1A;
+    --text-mid:   #4A4035;
+    --text-light: #7A6E5F;
+    --pad: clamp(16px, 4vw, 48px);
+    --pad-left: clamp(20px, 4vw, 56px);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    width: 100%;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── GOLD LEFT BAR ── */
+  body::before {
+    content: '';
+    position: fixed;
+    left: 0; top: 0; bottom: 0;
+    width: clamp(5px, 1vw, 8px);
+    background: var(--gold);
+    z-index: 100;
+  }
+
+  /* ── LINKS ── */
+  a {
+    color: var(--gold-light);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.15s;
+  }
+  a:hover { color: #E8C060; }
+  .on-navy a { color: var(--gold-light); }
+  .on-navy a:hover { color: #E8C060; }
+
+  /* ── HEADER ── */
+  .site-header {
+    background: var(--navy);
+    padding: clamp(18px, 3vw, 30px) var(--pad) clamp(14px, 2.5vw, 24px) var(--pad-left);
+    position: relative;
+  }
+  .site-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gold-light);
+  }
+  .site-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 4vw, 36px);
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.01em;
+  }
+  .site-header p {
+    font-size: clamp(11px, 1.5vw, 13px);
+    color: var(--warm-tan);
+    margin-top: 4px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── BODY WRAPPER ── */
+  .body {
+    padding: clamp(16px, 3vw, 28px) var(--pad) clamp(32px, 5vw, 48px) var(--pad-left);
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: clamp(10px, 1.2vw, 11px);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    border-bottom: 2px solid var(--gold-light);
+    padding-bottom: 5px;
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  /* ── PAGE DIVIDER ── */
+  .page-divider { height: 6px; background: var(--warm-tan); }
+
+  /* ══════════════════════════════════
+     EXPLANATION CARDS
+  ══════════════════════════════════ */
+  .explanation {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: clamp(20px, 3vw, 28px);
+  }
+  .explain-card {
+    background: white;
+    border: 1px solid var(--warm-mid);
+    border-radius: 10px;
+    padding: clamp(14px, 2vw, 18px) clamp(14px, 2vw, 20px);
+  }
+  .explain-card.full {
+    grid-column: 1 / -1;
+    background: var(--navy);
+    border-color: var(--navy);
+  }
+  .explain-card .card-label {
+    font-size: clamp(9px, 1.1vw, 10px);
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .explain-card.full .card-label { color: var(--gold-light); }
+  .explain-card p {
+    font-size: clamp(13px, 1.4vw, 14px);
+    color: var(--text-mid);
+    line-height: 1.7;
+  }
+  .explain-card.full p { color: var(--warm-tan); }
+
+  .scale-row {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    gap: 4px;
+  }
+  .scale-end {
+    flex: 0 0 auto;
+    width: clamp(90px, 12vw, 130px);
+    padding: 4px 8px;
+    font-size: clamp(11px, 1.3vw, 12px);
+    line-height: 1.5;
+    color: var(--text-mid);
+  }
+  .scale-end.right { text-align: right; }
+  .scale-end strong {
+    display: block;
+    font-size: clamp(18px, 2.5vw, 22px);
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .scale-bar {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+  }
+  .scale-bar-inner {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: linear-gradient(to right, #C9784C, #C9A84C, #2E7D4F);
+  }
+  .scale-ticks {
+    position: absolute;
+    top: 50%; left: 4px; right: 4px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+  }
+  .scale-ticks span { width: 1px; height: 8px; background: rgba(255,255,255,0.5); }
+
+  /* ══════════════════════════════════
+     IDEAL VISION GRID
+  ══════════════════════════════════ */
+  .ideal-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: clamp(20px, 3vw, 28px);
+  }
+  .ideal-card {
+    background: white;
+    border: 1px solid var(--warm-mid);
+    border-radius: 10px;
+    padding: 12px 13px 11px;
+  }
+  .ideal-card .ic-top {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 5px;
+  }
+  .ic-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .ic-name {
+    font-size: clamp(11px, 1.2vw, 12px);
+    font-weight: 500;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+  .ic-hint {
+    font-size: clamp(10px, 1.1vw, 11px);
+    color: var(--text-light);
+    line-height: 1.5;
+    margin-bottom: 9px;
+  }
+  .ideal-card textarea {
+    width: 100%;
+    height: 58px;
+    border: 1px solid var(--warm-mid);
+    border-radius: 6px;
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(11px, 1.2vw, 12px);
+    color: var(--text-dark);
+    resize: none;
+    outline: none;
+    padding: 6px 8px;
+    line-height: 1.5;
+    transition: border-color 0.15s;
+  }
+  .ideal-card textarea:focus { border-color: var(--gold); }
+  .ideal-card textarea::placeholder { color: var(--warm-mid); }
+
+  /* ══════════════════════════════════
+     SCORE GRID
+  ══════════════════════════════════ */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: clamp(20px, 3vw, 28px);
+  }
+  .score-card {
+    background: white;
+    border: 1px solid var(--warm-mid);
+    border-radius: 10px;
+    padding: 10px 12px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+  }
+  .sc-dot { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+  .sc-name {
+    font-size: clamp(11px, 1.2vw, 12px);
+    color: var(--text-mid);
+    flex: 1;
+    line-height: 1.3;
+  }
+  .sc-input {
+    width: clamp(44px, 5vw, 52px);
+    height: clamp(34px, 4vw, 38px);
+    border: 1.5px solid var(--warm-mid);
+    border-radius: 8px;
+    background: white;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(15px, 2vw, 18px);
+    font-weight: 500;
+    color: var(--navy);
+    outline: none;
+    transition: border-color 0.15s, background 0.15s;
+    flex-shrink: 0;
+    -moz-appearance: textfield;
+  }
+  .sc-input::-webkit-inner-spin-button,
+  .sc-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+  .sc-input:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(139,105,20,0.12); }
+  .sc-input.has-val { background: var(--gold-pale); border-color: var(--gold-light); }
+
+  /* ══════════════════════════════════
+     WHEEL
+  ══════════════════════════════════ */
+  .wheel-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .label-strip {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    max-width: 560px;
+  }
+  .spoke-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    width: 25%;
+  }
+  .pill-dot { width: 9px; height: 9px; border-radius: 50%; }
+  .pill-name {
+    font-size: clamp(10px, 1.1vw, 11px);
+    font-weight: 500;
+    color: var(--navy);
+    text-align: center;
+    line-height: 1.3;
+  }
+  .wheel-canvas-wrap {
+    width: 100%;
+    max-width: 560px;
+    position: relative;
+  }
+  #wheelCanvas {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* ══════════════════════════════════
+     PAGE 2
+  ══════════════════════════════════ */
+  .p2-header {
+    background: var(--navy);
+    padding: clamp(16px, 2.5vw, 24px) var(--pad) clamp(14px, 2vw, 20px) var(--pad-left);
+    position: relative;
+  }
+  .p2-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: var(--gold-light);
+  }
+  .p2-header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(20px, 3.5vw, 30px);
+    font-weight: 600;
+    color: var(--gold-light);
+  }
+  .p2-header p { font-size: clamp(11px, 1.4vw, 13px); color: var(--warm-tan); margin-top: 4px; }
+
+  .big-question {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: clamp(20px, 3vw, 28px) clamp(20px, 3vw, 32px);
+    margin-bottom: 18px;
+    text-align: center;
+  }
+  .big-question p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 3vw, 26px);
+    font-style: italic;
+    color: var(--gold-light);
+    line-height: 1.4;
+    margin-bottom: 10px;
+  }
+  .big-question small { font-size: clamp(11px, 1.4vw, 13px); color: var(--warm-tan); }
+
+  .write-area {
+    width: 100%;
+    border: none;
+    border-bottom: 1.5px solid var(--warm-mid);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(13px, 1.5vw, 14px);
+    color: var(--text-dark);
+    outline: none;
+    padding: 8px 0;
+    resize: none;
+    display: block;
+    margin-bottom: 6px;
+    transition: border-color 0.15s;
+  }
+  .write-area:focus { border-bottom-color: var(--gold); }
+  .write-area::placeholder { color: var(--warm-mid); font-size: 13px; }
+
+  .write-line {
+    border: none;
+    border-bottom: 1.5px solid var(--warm-mid);
+    background: transparent;
+    font-family: 'DM Sans', sans-serif;
+    font-size: clamp(13px, 1.5vw, 14px);
+    color: var(--text-dark);
+    outline: none;
+    padding: 8px 0;
+    width: 100%;
+    display: block;
+    margin-bottom: 4px;
+    transition: border-color 0.15s;
+  }
+  .write-line:focus { border-bottom-color: var(--gold); }
+  .write-line::placeholder { color: var(--warm-mid); font-size: 13px; }
+
+  .prompt-block { margin-bottom: clamp(18px, 2.5vw, 24px); }
+  .prompt-q { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .prompt-q .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+    margin-top: 6px;
+  }
+  .prompt-q span { font-size: clamp(13px, 1.5vw, 14px); font-weight: 500; color: var(--text-dark); line-height: 1.5; }
+
+  .one-area-box {
+    background: var(--warm-tan);
+    border-left: 6px solid var(--gold);
+    border-radius: 0 10px 10px 0;
+    padding: clamp(14px, 2vw, 18px) clamp(16px, 2.5vw, 22px);
+    margin-bottom: 20px;
+  }
+  .one-area-box label {
+    font-size: clamp(12px, 1.4vw, 13px);
+    font-weight: 500;
+    color: var(--navy);
+    display: block;
+    margin-bottom: 8px;
+  }
+  .one-area-box input {
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid var(--gold-light);
+    background: transparent;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2.5vw, 22px);
+    color: var(--navy);
+    outline: none;
+    padding: 4px 0;
+    transition: border-color 0.15s;
+  }
+  .one-area-box input:focus { border-bottom-color: var(--gold); }
+  .one-area-box small {
+    display: block;
+    font-size: clamp(11px, 1.2vw, 12px);
+    color: var(--text-light);
+    margin-top: 8px;
+    font-style: italic;
+  }
+
+  .cta-box {
+    background: var(--navy);
+    border-radius: 10px;
+    padding: clamp(18px, 2.5vw, 24px) clamp(20px, 3vw, 30px);
+    text-align: center;
+  }
+  .cta-box p { color: var(--gold-light); font-size: clamp(15px, 1.8vw, 17px); font-weight: 500; margin-bottom: 8px; }
+  .cta-box .cta-sub { color: var(--warm-tan); font-size: clamp(12px, 1.4vw, 13px); display: block; margin-bottom: 10px; line-height: 1.6; }
+  .cta-box .cta-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 4px; }
+  .cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gold);
+    color: white !important;
+    text-decoration: none !important;
+    font-size: clamp(12px, 1.4vw, 13px);
+    font-weight: 500;
+    padding: 9px 18px;
+    border-radius: 6px;
+    transition: background 0.15s, transform 0.1s;
+    letter-spacing: 0.02em;
+  }
+  .cta-link:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .cta-link.secondary {
+    background: transparent;
+    border: 1.5px solid var(--gold-light);
+    color: var(--gold-light) !important;
+    padding: 8px 18px;
+  }
+  .cta-link.secondary:hover { background: rgba(201,168,76,0.12); }
+
+  /* ── FOOTER ── */
+  .site-footer {
+    padding: 12px var(--pad) 12px var(--pad-left);
+    border-top: 1px solid var(--warm-mid);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 6px;
+    font-size: clamp(10px, 1.2vw, 11px);
+    color: var(--text-light);
+  }
+  .site-footer a { color: var(--text-light); }
+  .site-footer a:hover { color: var(--gold); }
+
+  /* ══════════════════════════════════
+     TABLET — 2 cols for 4-col grids
+  ══════════════════════════════════ */
+  @media (max-width: 900px) {
+    .ideal-grid,
+    .score-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .explanation {
+      grid-template-columns: 1fr;
+    }
+    .explain-card.full { grid-column: 1; }
+    .scale-row { flex-direction: column; gap: 8px; }
+    .scale-end { width: 100%; text-align: left !important; }
+    .scale-end strong { display: inline; margin-right: 6px; }
+    .scale-bar { width: 100%; padding: 0; }
+  }
+
+  /* ══════════════════════════════════
+     MOBILE — 1 col, stacked everything
+  ══════════════════════════════════ */
+  @media (max-width: 540px) {
+    body::before { width: 5px; }
+
+    .ideal-grid,
+    .score-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .ideal-card textarea { height: 48px; }
+
+    .score-card { padding: 9px 10px; gap: 7px; }
+    .sc-input { width: 40px; height: 32px; font-size: 15px; }
+
+    .label-strip { max-width: 100%; }
+    .spoke-pill { width: 25%; }
+    .pill-name { font-size: 9px; }
+
+    .site-footer { flex-direction: column; gap: 4px; }
+
+    .cta-box .cta-links { flex-direction: column; align-items: center; }
+    .cta-link { width: 100%; justify-content: center; }
+
+    .big-question p br { display: none; }
+  }
+
+  /* ══════════════════════════════════
+     VERY SMALL — single column cards
+  ══════════════════════════════════ */
+  @media (max-width: 380px) {
+    .ideal-grid,
+    .score-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════
+     PAGE 1
+══════════════════════════ -->
+<div class="site-header">
+  <h1>The 15-Minute Life Audit</h1>
+  <p>A free exercise from Jason St Gelais &nbsp;|&nbsp;
+    <a href="https://stgelaisleadership.com" target="_blank" rel="noopener">stgelaisleadership.com</a>
+  </p>
+</div>
+
+<div class="body">
+
+  <!-- What is this -->
+  <div style="margin-bottom: clamp(20px,3vw,28px); margin-top:4px;">
+    <div class="explanation">
+      <div class="explain-card full">
+        <div class="card-label">What is this &amp; why it matters</div>
+        <p>The Wheel of Life is one of the most powerful self-assessment tools used by coaches and leaders worldwide. It gives you a clear visual snapshot of how balanced — or unbalanced — your life truly is right now. Think of your life as a wheel: when all areas are strong and roughly equal, the wheel rolls smoothly forward. When some areas are high and others are neglected, the wheel wobbles — and that wobble shows up as stress, frustration, or the nagging feeling that something is missing, even when you're working hard.</p>
+      </div>
+      <div class="explain-card">
+        <div class="card-label">The scoring scale</div>
+        <div class="scale-row">
+          <div class="scale-end"><strong>1</strong>Very far from your ideal. This area feels neglected, painful, or seriously lacking.</div>
+          <div class="scale-bar">
+            <div class="scale-bar-inner"></div>
+            <div class="scale-ticks"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          </div>
+          <div class="scale-end right"><strong>10</strong>Fully living your ideal. Thriving, not just surviving.</div>
+        </div>
+      </div>
+      <div class="explain-card">
+        <div class="card-label">Before you score</div>
+        <p>A 10 is not perfection — it means you are genuinely living your <em>ideal</em> version of this area right now. Not compared to others. What truly feels right and fulfilling <em>for you</em>. Be honest. Score where you actually are today, not where you hope to be. Real insights come from honesty, not optimism.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Step 1 -->
+  <span class="section-label">Step 1 — Before scoring, define what a "10" looks like for you in each area</span>
+  <div class="ideal-grid">
+    <div class="ideal-card">
+      <div class="ic-top"><div class="ic-dot" style="background:#1C5C8A"></div><div class="ic-name">Career / Professional</div></div>
+      <div class="ic-hint">Purpose, growth &amp; satisfaction in your work. Leading with confidence, excited to start each day.</div>
+      <textarea placeholder="My ideal looks like..."></textarea>
+    </div>
+    <div class="ideal-card">
+      <div class="ic-top"><div class="ic-dot" style="background:#8B6914"></div><div class="ic-name">Finances / Money</div></div>
+      <div class="ic-hint">Financial security, freedom &amp; abundance. Savings, debt-free, investing with confidence.</div>
+      <textarea placeholder="My ideal looks like..."></textarea>
+    </div>
+    <div class="ideal-card">
+      <div class="ic-top"><div class="ic-dot" style="background:#2E7D4F"></div><div class="ic-name">Health / Well-Being</div></div>
+      <div class="ic-hint">Physical energy, fitness, nutrition &amp; sleep. Waking up strong and rested every morning.</div>
+      <textarea placeholder="My ideal looks like..."></textarea>
+    </div>
+    <div class="ideal-card">
+      <div class="ic-top"><div class="ic-dot" style="background:#8B3A3A"></div><div class="ic-name">Relationships / Family</div></div>
+      <div class="ic-hint">Deep, nourishing connections. Feeling truly seen, supported &amp; close to the people who matter.</div>
+      <textarea placeholder="My ideal looks like..."></textarea>
+    </div>
+    <div class="ideal-card">
+      <div class="ic-top"><div class="ic-dot" style="background:#5C3D8B"></div><div class="ic-name">Personal Growth</div></div>
+      <div class="ic-hint">Continuous learning, skill-building &amp; mindset development. Growing in self-awareness daily.</div>
+      <textarea placeholder="My ideal looks like..."></textarea>
+    </div>
+    <div class="ideal-card">
+      <div class="ic-top"><div class="ic-dot" style="background:#C07A20"></div><div class="ic-name">Fun / Leisure</div></div>
+      <div class="ic-hint">Joy, play &amp; hobbies that light you up. Guilt-free time to rest and do what you love.</div>
+      <textarea placeholder="My ideal looks like..."></textarea>
+    </div>
+    <div class="ideal-card">
+      <div class="ic-top"><div class="ic-dot" style="background:#2A6B6B"></div><div class="ic-name">Spirituality / Faith</div></div>
+      <div class="ic-hint">Inner peace, connection to your values &amp; a sense of deeper meaning that guides your decisions.</div>
+      <textarea placeholder="My ideal looks like..."></textarea>
+    </div>
+    <div class="ideal-card">
+      <div class="ic-top"><div class="ic-dot" style="background:#5C5C2E"></div><div class="ic-name">Environment / Home</div></div>
+      <div class="ic-hint">A calm, organized space that energizes and supports your focus rather than drains you.</div>
+      <textarea placeholder="My ideal looks like..."></textarea>
+    </div>
+  </div>
+
+  <!-- Step 2 -->
+  <span class="section-label">Step 2 — Now score your current reality (1–10) against that ideal</span>
+  <div class="score-grid">
+    <div class="score-card"><div class="sc-dot" style="background:#1C5C8A"></div><div class="sc-name">Career /<br>Professional</div><input class="sc-input" id="s0" type="number" min="1" max="10" placeholder="—"></div>
+    <div class="score-card"><div class="sc-dot" style="background:#8B6914"></div><div class="sc-name">Finances /<br>Money</div><input class="sc-input" id="s1" type="number" min="1" max="10" placeholder="—"></div>
+    <div class="score-card"><div class="sc-dot" style="background:#2E7D4F"></div><div class="sc-name">Health /<br>Well-Being</div><input class="sc-input" id="s2" type="number" min="1" max="10" placeholder="—"></div>
+    <div class="score-card"><div class="sc-dot" style="background:#8B3A3A"></div><div class="sc-name">Relationships /<br>Family</div><input class="sc-input" id="s3" type="number" min="1" max="10" placeholder="—"></div>
+    <div class="score-card"><div class="sc-dot" style="background:#5C3D8B"></div><div class="sc-name">Personal<br>Growth</div><input class="sc-input" id="s4" type="number" min="1" max="10" placeholder="—"></div>
+    <div class="score-card"><div class="sc-dot" style="background:#C07A20"></div><div class="sc-name">Fun /<br>Leisure</div><input class="sc-input" id="s5" type="number" min="1" max="10" placeholder="—"></div>
+    <div class="score-card"><div class="sc-dot" style="background:#2A6B6B"></div><div class="sc-name">Spirituality /<br>Faith</div><input class="sc-input" id="s6" type="number" min="1" max="10" placeholder="—"></div>
+    <div class="score-card"><div class="sc-dot" style="background:#5C5C2E"></div><div class="sc-name">Environment /<br>Home</div><input class="sc-input" id="s7" type="number" min="1" max="10" placeholder="—"></div>
+  </div>
+
+  <!-- Step 3: Wheel -->
+  <span class="section-label">Step 3 — Your wheel (updates automatically as you enter scores above)</span>
+  <div class="wheel-area">
+    <div class="label-strip" style="margin-bottom:8px;">
+      <div class="spoke-pill"><div class="pill-dot" style="background:#2A6B6B"></div><div class="pill-name">Spirituality /<br>Faith</div></div>
+      <div class="spoke-pill"><div class="pill-dot" style="background:#5C5C2E"></div><div class="pill-name">Environment /<br>Home</div></div>
+      <div class="spoke-pill"><div class="pill-dot" style="background:#1C5C8A"></div><div class="pill-name">Career /<br>Professional</div></div>
+      <div class="spoke-pill"><div class="pill-dot" style="background:#8B6914"></div><div class="pill-name">Finances /<br>Money</div></div>
+    </div>
+    <div class="wheel-canvas-wrap">
+      <canvas id="wheelCanvas" width="560" height="420"></canvas>
+    </div>
+    <div class="label-strip" style="margin-top:8px;">
+      <div class="spoke-pill"><div class="pill-dot" style="background:#2E7D4F"></div><div class="pill-name">Health /<br>Well-Being</div></div>
+      <div class="spoke-pill"><div class="pill-dot" style="background:#8B3A3A"></div><div class="pill-name">Relationships /<br>Family</div></div>
+      <div class="spoke-pill"><div class="pill-dot" style="background:#5C3D8B"></div><div class="pill-name">Personal<br>Growth</div></div>
+      <div class="spoke-pill"><div class="pill-dot" style="background:#C07A20"></div><div class="pill-name">Fun /<br>Leisure</div></div>
+    </div>
+  </div>
+
+</div>
+
+<div class="site-footer">
+  <span>Jason St Gelais &nbsp;|&nbsp;
+    <a href="mailto:jason@stgelaisleadership.com">jason@stgelaisleadership.com</a>
+  </span>
+  <span>© Jason St Gelais — for personal use only</span>
+</div>
+
+<!-- ══════════════════════════
+     PAGE DIVIDER
+══════════════════════════ -->
+<div class="page-divider"></div>
+
+<!-- ══════════════════════════
+     PAGE 2
+══════════════════════════ -->
+<div class="p2-header">
+  <h1>Your Reflection</h1>
+  <p>The one question that changes everything.</p>
+</div>
+
+<div class="body">
+
+  <!-- Step 4 -->
+  <div style="margin-bottom:28px; margin-top:4px;">
+    <span class="section-label">Step 4 — The one question</span>
+    <div class="big-question">
+      <p>"If nothing changes in the next 5 years —<br>how does that feel?"</p>
+      <small>Close your eyes. Sit with it for 30 seconds. Then write your raw, honest reaction below.</small>
+    </div>
+    <textarea class="write-area" rows="5" placeholder="Write freely here — no editing, no filters..."></textarea>
+  </div>
+
+  <!-- Step 5 -->
+  <div style="margin-bottom:28px;">
+    <span class="section-label">Step 5 — Read your wheel</span>
+
+    <div class="prompt-block">
+      <div class="prompt-q"><span class="dot"></span><span>Which area scored lowest — and is that a surprise to you?</span></div>
+      <input class="write-line" type="text" placeholder="Your answer...">
+      <input class="write-line" type="text" placeholder="">
+      <input class="write-line" type="text" placeholder="">
+    </div>
+
+    <div class="prompt-block">
+      <div class="prompt-q"><span class="dot"></span><span>Which one area, if raised by just 2–3 points in the next 90 days, would create the biggest ripple effect across your whole life?</span></div>
+      <input class="write-line" type="text" placeholder="Your answer...">
+      <input class="write-line" type="text" placeholder="">
+      <input class="write-line" type="text" placeholder="">
+    </div>
+
+    <div class="prompt-block">
+      <div class="prompt-q"><span class="dot"></span><span>Where are you already stronger than you give yourself credit for? What does that tell you about what you're capable of?</span></div>
+      <input class="write-line" type="text" placeholder="Your answer...">
+      <input class="write-line" type="text" placeholder="">
+      <input class="write-line" type="text" placeholder="">
+    </div>
+
+    <div class="prompt-block">
+      <div class="prompt-q"><span class="dot"></span><span>If your entire wheel is low and roughly even — does it feel "balanced" or "stuck"? What story are you telling yourself about why life is just okay?</span></div>
+      <input class="write-line" type="text" placeholder="Your answer...">
+      <input class="write-line" type="text" placeholder="">
+      <input class="write-line" type="text" placeholder="">
+    </div>
+  </div>
+
+  <!-- One area -->
+  <div class="one-area-box" style="margin-bottom:24px;">
+    <label>My ONE area to focus on first:</label>
+    <input type="text" placeholder="Write it here...">
+    <small>The gap shows where you're going. The gain shows who you already are. This is where your next 90 days begins.</small>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-box">
+    <p>Ready to go 10× deeper — with Jason beside you?</p>
+    <span class="cta-sub">The full <em>Master Your Goals</em> workshop takes everything you just discovered and builds it into a clear, committed plan for the next decade of your life.</span>
+    <div class="cta-links">
+      <a class="cta-link" href="https://www.linkedin.com/in/jstgelais" target="_blank" rel="noopener">
+        DM Jason on LinkedIn
+      </a>
+      <a class="cta-link" href="https://stgelaisleadership.com/workshop" target="_blank" rel="noopener">
+        Learn About the Workshop
+      </a>
+      <a class="cta-link secondary" href="https://stgelaisleadership.com" target="_blank" rel="noopener">
+        stgelaisleadership.com
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<div class="site-footer">
+  <span>Jason St Gelais &nbsp;|&nbsp;
+    <a href="mailto:jason@stgelaisleadership.com">jason@stgelaisleadership.com</a> &nbsp;|&nbsp;
+    <a href="https://stgelaisleadership.com" target="_blank" rel="noopener">stgelaisleadership.com</a>
+  </span>
+  <span>© Jason St Gelais — for personal use only</span>
+</div>
+
+<script>
+const CATS = [
+  { color: "#1C5C8A" }, { color: "#8B6914" }, { color: "#2E7D4F" }, { color: "#8B3A3A" },
+  { color: "#5C3D8B" }, { color: "#C07A20" }, { color: "#2A6B6B" }, { color: "#5C5C2E" },
+];
+
+const scores = new Array(8).fill(0);
+const canvas = document.getElementById("wheelCanvas");
+const ctx    = canvas.getContext("2d");
+const W      = canvas.width;
+const H      = canvas.height;
+const CX     = W / 2;
+const CY     = H / 2;
+const R      = 185;
+const N      = 8;
+const STEP   = (2 * Math.PI) / N;
+const START  = -Math.PI / 2;
+
+function drawWheel() {
+  ctx.clearRect(0, 0, W, H);
+
+  // Alternating ring fills
+  for (let ring = 10; ring >= 1; ring--) {
+    const r = R * ring / 10;
+    ctx.beginPath();
+    ctx.arc(CX, CY, r, 0, 2 * Math.PI);
+    ctx.fillStyle = ring % 2 === 0 ? "#EDE5D0" : "#F5F0E8";
+    ctx.fill();
+  }
+
+  // Ring outlines
+  for (let ring = 1; ring <= 10; ring++) {
+    const r = R * ring / 10;
+    ctx.beginPath();
+    ctx.arc(CX, CY, r, 0, 2 * Math.PI);
+    ctx.strokeStyle = ring === 10 ? "#1C2B3A" : "#D4C5A0";
+    ctx.lineWidth   = ring === 10 ? 2 : 0.6;
+    ctx.stroke();
+  }
+
+  // Ring number labels
+  ctx.fillStyle    = "#9A8E7F";
+  ctx.font         = "500 10px 'DM Sans', sans-serif";
+  ctx.textAlign    = "left";
+  ctx.textBaseline = "alphabetic";
+  [2, 4, 6, 8, 10].forEach(ring => {
+    const r = R * ring / 10;
+    ctx.fillText(ring, CX + 5, CY - r + 10);
+  });
+
+  // Spokes
+  for (let i = 0; i < N; i++) {
+    const angle = START + i * STEP;
+    ctx.beginPath();
+    ctx.moveTo(CX, CY);
+    ctx.lineTo(CX + R * Math.cos(angle), CY + R * Math.sin(angle));
+    ctx.strokeStyle = "#D4C5A0";
+    ctx.lineWidth   = 0.8;
+    ctx.stroke();
+  }
+
+  // Filled polygon
+  if (scores.some(s => s > 0)) {
+    ctx.beginPath();
+    for (let i = 0; i < N; i++) {
+      const angle = START + i * STEP;
+      const r     = scores[i] > 0 ? R * scores[i] / 10 : 0;
+      const x     = CX + r * Math.cos(angle);
+      const y     = CY + r * Math.sin(angle);
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.closePath();
+    ctx.fillStyle   = "rgba(139,105,20,0.16)";
+    ctx.fill();
+    ctx.strokeStyle = "#8B6914";
+    ctx.lineWidth   = 2.5;
+    ctx.stroke();
+
+    // Score dots
+    for (let i = 0; i < N; i++) {
+      if (!scores[i]) continue;
+      const angle = START + i * STEP;
+      const r     = R * scores[i] / 10;
+      const x     = CX + r * Math.cos(angle);
+      const y     = CY + r * Math.sin(angle);
+      ctx.beginPath();
+      ctx.arc(x, y, 7, 0, 2 * Math.PI);
+      ctx.fillStyle   = CATS[i].color;
+      ctx.fill();
+      ctx.strokeStyle = "white";
+      ctx.lineWidth   = 2;
+      ctx.stroke();
+    }
+  }
+
+  // Center dot
+  ctx.beginPath();
+  ctx.arc(CX, CY, 6, 0, 2 * Math.PI);
+  ctx.fillStyle = "#1C2B3A";
+  ctx.fill();
+}
+
+drawWheel();
+
+// Wire up score inputs
+for (let i = 0; i < 8; i++) {
+  const inp = document.getElementById("s" + i);
+  inp.addEventListener("input", () => {
+    let v = parseInt(inp.value);
+    if (isNaN(v) || inp.value === "") {
+      scores[i] = 0;
+      inp.classList.remove("has-val");
+    } else {
+      v = Math.max(1, Math.min(10, v));
+      inp.value = v;
+      scores[i] = v;
+      inp.classList.add("has-val");
+    }
+    drawWheel();
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+@import "tailwindcss";
+
+:root {
+  --navy: #1C2B3A;
+  --gold: #8B6914;
+  --gold-light: #C9A84C;
+  --cream: #FAF7F2;
+  --warm-tan: #EDE0C4;
+  --text-dark: #1A1A1A;
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background-color: #ffffff;
+  color: var(--text-dark);
+}
+
+.btn-gold {
+  background-color: var(--gold-light);
+  color: var(--navy);
+  padding: 16px 36px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.03em;
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn-gold:hover {
+  background-color: #e8c060;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201,168,76,0.4);
+}
+
+.btn-navy {
+  background-color: var(--navy);
+  color: var(--gold-light);
+  padding: 14px 32px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-block;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.section-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+}
+
+.strike {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
