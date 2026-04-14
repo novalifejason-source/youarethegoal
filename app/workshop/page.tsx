@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Live Goal-Setting Workshop | You Are the Goal",
-  description: "5 live sessions with Jason St. Gelais to build a decade of direction. Mid-career professionals who are done with vague goals and ready for real momentum. Launch price: $197.",
+  description: "5 live sessions with Jason St. Gelais to build a decade of direction. Mid-career professionals who are done with vague goals and ready for real momentum. Launch price: $97.",
 };
 
 export default function Workshop() {
@@ -11,7 +11,7 @@ export default function Workshop() {
     <main style={{ fontFamily: "'Georgia', serif" }}>
       <div style={{ backgroundColor: "var(--navy)", borderBottom: "4px solid var(--gold-light)" }} className="px-6 py-4 text-center">
         <p style={{ color: "var(--gold-light)" }} className="text-sm font-bold tracking-widest uppercase">
-          Live Workshop · Small Group · 5 Sessions · Launch Price $197
+          Live Workshop · Small Group · 5 Sessions · Launch Price $97
         </p>
       </div>
 
@@ -45,8 +45,8 @@ export default function Workshop() {
             <p className="text-gray-400 text-sm mb-1">Anchor Value</p>
             <p className="strike text-2xl text-gray-400 mb-1">$497</p>
             <p className="text-white text-sm font-bold mb-1 uppercase tracking-widest">Launch Price</p>
-            <p style={{ color: "var(--gold-light)" }} className="text-5xl font-bold mb-2">$197</p>
-            <p style={{ color: "var(--gold)" }} className="text-sm font-bold mb-6">60% off — founding cohort only</p>
+            <p style={{ color: "var(--gold-light)" }} className="text-5xl font-bold mb-2">$97</p>
+            <p style={{ color: "var(--gold)" }} className="text-sm font-bold mb-6">80% off — founding cohort only</p>
             <a href="/#contact" className="btn-gold block w-full text-center py-4">
               Reserve My Seat →
             </a>
@@ -134,9 +134,9 @@ export default function Workshop() {
           <div style={{ border: "2px solid var(--gold-light)", backgroundColor: "white" }} className="rounded-xl p-8 mb-8">
             <div className="flex justify-center items-baseline gap-4 mb-2">
               <span className="strike text-xl text-gray-400">$497</span>
-              <span className="text-5xl font-bold" style={{ color: "var(--navy)" }}>$197</span>
+              <span className="text-5xl font-bold" style={{ color: "var(--navy)" }}>$97</span>
             </div>
-            <p style={{ color: "var(--gold)" }} className="text-sm font-bold mb-6 uppercase tracking-wider">Founding Cohort Launch Price</p>
+            <p style={{ color: "var(--gold)" }} className="text-sm font-bold mb-6 uppercase tracking-wider">Founding Digital Cohort Price</p>
             <a href="https://calendly.com/jasonstgelais" target="_blank" rel="noopener noreferrer" className="btn-gold block w-full text-center py-4 text-lg mb-3">
               Reserve My Seat →
             </a>
@@ -157,3 +157,5 @@ export default function Workshop() {
     </main>
   );
 }
+
+
