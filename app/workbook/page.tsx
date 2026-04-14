@@ -36,7 +36,7 @@ export default function Workbook() {
             <p style={{ color: "var(--gold-light)" }} className="text-6xl font-bold mb-2">$37</p>
             <p style={{ color: "var(--gold)" }} className="text-sm font-bold mb-6">You save 62% today</p>
             <a
-              href="https://buy.stripe.com/PLACEHOLDER_WORKBOOK"
+              href="https://buy.stripe.com/14A6ozez32jd9SXcwR4gg00"
               className="btn-gold block w-full text-center py-4 text-lg"
             >
               Get Instant Access — $37 →
@@ -131,7 +131,7 @@ export default function Workbook() {
               <span className="text-5xl font-bold" style={{ color: "var(--navy)" }}>$37</span>
             </div>
             <p style={{ color: "var(--gold)" }} className="text-sm font-bold mb-6 uppercase tracking-wider">Founding Client Launch Price</p>
-            <a href="https://buy.stripe.com/PLACEHOLDER_WORKBOOK" className="btn-gold block w-full text-center py-4 text-lg mb-3">
+            <a href="https://buy.stripe.com/14A6ozez32jd9SXcwR4gg00" className="btn-gold block w-full text-center py-4 text-lg mb-3">
               Yes — Give Me Instant Access for $37 →
             </a>
             <p className="text-gray-400 text-xs">Secure one-time payment · Instant PDF download · 14-day guarantee</p>
@@ -155,4 +155,5 @@ export default function Workbook() {
     </main>
   );
 }
+
 

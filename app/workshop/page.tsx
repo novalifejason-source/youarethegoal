@@ -137,7 +137,7 @@ export default function Workshop() {
               <span className="text-5xl font-bold" style={{ color: "var(--navy)" }}>$97</span>
             </div>
             <p style={{ color: "var(--gold)" }} className="text-sm font-bold mb-6 uppercase tracking-wider">Founding Digital Cohort Price</p>
-            <a href="https://calendly.com/jasonstgelais" target="_blank" rel="noopener noreferrer" className="btn-gold block w-full text-center py-4 text-lg mb-3">
+            <a href="https://buy.stripe.com/fZucMX8aF8HB6GL40l4gg01" target="_blank" rel="noopener noreferrer" className="btn-gold block w-full text-center py-4 text-lg mb-3">
               Reserve My Seat →
             </a>
             <p className="text-gray-400 text-xs">You'll select your cohort after booking</p>
@@ -157,6 +157,7 @@ export default function Workshop() {
     </main>
   );
 }
+
 
 
 
