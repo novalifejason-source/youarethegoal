@@ -276,7 +276,7 @@ export default function WorkshopConfirmPage() {
         <SectionLabel>What happens next</SectionLabel>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
           {[
-            { n: 1, title: 'Pick your cohort', desc: 'Choose a start date below — Cohort 1 starts April 28 or Cohort 2 starts May 12.' },
+            { n: 1, title: 'Reserve your cohort', desc: 'Choose a start date below — Cohort 1 starts April 28 or Cohort 2 starts May 12.' },
             { n: 2, title: 'Add all 5 sessions', desc: 'Use the calendar buttons to add every session to Google, Outlook, or Apple Calendar.' },
             { n: 3, title: 'Check your email', desc: 'A confirmation with your Zoom link and workbook reminder is on its way to your inbox.' },
           ].map(({ n, title, desc }) => (
