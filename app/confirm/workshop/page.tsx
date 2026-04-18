@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { CheckCircle, Calendar, Clock, ExternalLink, Mail, Link2 } from 'lucide-react';
+import { useEffect, useState, useRef } from 'react';
+import { CheckCircle, Calendar, Clock, ExternalLink, Mail, Link2, ChevronDown } from 'lucide-react';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -144,32 +144,45 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function CalButtons({ session, label, filename }: { session: Session; label: string; filename: string }) {
+function CalDropdown({ session, label, filename }: { session: Session; label: string; filename: string }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    }
+    document.addEventListener('mousedown', handleClick);
+    return () => document.removeEventListener('mousedown', handleClick);
+  }, []);
+
   return (
-    <div className="flex flex-wrap gap-1.5 mb-3">
-      <a
-        href={googleCalUrl(session, label)}
-        target="_blank"
-        rel="noopener noreferrer"
+    <div className="relative" ref={ref}>
+      <button
+        onClick={() => setOpen(!open)}
         className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-md border border-stone-200 bg-stone-50 text-stone-600 hover:border-amber-500 hover:text-amber-700 transition-colors"
       >
-        <Calendar size={11} /> Google
-      </a>
-      <a
-        href={outlookUrl(session, label)}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-md border border-stone-200 bg-stone-50 text-stone-600 hover:border-amber-500 hover:text-amber-700 transition-colors"
-      >
-        <Calendar size={11} /> Outlook
-      </a>
-      <a
-        href={icsDownloadUrl(session, label)}
-        download={`${filename}.ics`}
-        className="inline-flex items-center gap-1.5 text-xs font-medium px-2.5 py-1.5 rounded-md border border-stone-200 bg-stone-50 text-stone-600 hover:border-amber-500 hover:text-amber-700 transition-colors"
-      >
-        <Calendar size={11} /> Apple / iCal
-      </a>
+        <Calendar size={11} /> Add to calendar <ChevronDown size={11} className={open ? 'rotate-180' : ''} />
+      </button>
+      {open && (
+        <div className="absolute right-0 mt-1 w-40 bg-white border border-stone-200 rounded-lg shadow-lg z-10 overflow-hidden">
+          <a href={googleCalUrl(session, label)} target="_blank" rel="noopener noreferrer"
+            className="block px-3 py-2 text-xs text-stone-600 hover:bg-amber-50 hover:text-amber-700"
+            onClick={() => setOpen(false)}>
+            Google Calendar
+          </a>
+          <a href={outlookUrl(session, label)} target="_blank" rel="noopener noreferrer"
+            className="block px-3 py-2 text-xs text-stone-600 hover:bg-amber-50 hover:text-amber-700"
+            onClick={() => setOpen(false)}>
+            Outlook
+          </a>
+          <a href={icsDownloadUrl(session, label)} download={`${filename}.ics`}
+            className="block px-3 py-2 text-xs text-stone-600 hover:bg-amber-50 hover:text-amber-700"
+            onClick={() => setOpen(false)}>
+            Apple / iCal (.ics)
+          </a>
+        </div>
+      )}
     </div>
   );
 }
@@ -185,52 +198,43 @@ function CohortCard({ cohort, name, email }: { cohort: Cohort; name: string; ema
       </span>
 
       {/* Title */}
-      <h3 className="text-xl font-semibold text-slate-800 mb-4">{cohort.title}</h3>
+      <h3 className="text-xl font-semibold text-slate-800 mb-3">{cohort.title}</h3>
 
-      {/* Sessions */}
-      <div className="divide-y divide-stone-100 mb-4">
-        {cohort.sessions.map((session) => (
-          <div key={session.startUtc} className="flex items-center gap-3 py-2.5 text-sm">
-            <span className="font-medium text-slate-700 w-28 sm:w-32 flex-shrink-0">{session.day}</span>
-            <span className="text-stone-500 text-xs flex items-center gap-1">
-              <Clock size={11} /> 4pm AZ / 7pm ET
-            </span>
-            <span className="ml-auto text-xs font-medium text-amber-700 bg-amber-50 px-2 py-0.5 rounded hidden sm:block">
-              {session.label}
-            </span>
-          </div>
-        ))}
-      </div>
-
-      {/* Calendar links */}
-      <div className="border-t border-stone-100 pt-4 mt-auto">
-        <p className="text-xs font-medium tracking-wide uppercase text-stone-400 mb-3">
-          Add all sessions to your calendar
-        </p>
-        {cohort.sessions.map((session, i) => (
-          <div key={session.startUtc}>
-            <p className="text-xs text-stone-400 mb-1.5">{session.day}</p>
-            <CalButtons
-              session={session}
-              label={session.label}
-              filename={`session${i + 1}-${session.day.toLowerCase().replace(/[, ]+/g, '-')}`}
-            />
-          </div>
-        ))}
-      </div>
-
-      {/* Book button */}
+      {/* Book button — FIRST */}
       <a
         href={calendlyUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-4 flex flex-col items-center justify-center gap-0.5 w-full bg-slate-800 hover:bg-slate-700 text-amber-300 font-medium text-sm px-4 py-3.5 rounded-xl transition-colors"
+        className="mb-4 flex flex-col items-center justify-center gap-0.5 w-full bg-slate-800 hover:bg-slate-700 text-amber-300 font-medium text-sm px-4 py-3.5 rounded-xl transition-colors"
       >
         <span className="flex items-center gap-2">
           Reserve my spot — {cohort.badge} <ExternalLink size={13} />
         </span>
         <span className="text-xs text-stone-400 font-normal">Starts {cohort.startLabel}</span>
       </a>
+
+      {/* Sessions with dropdown calendar */}
+      <div className="border-t border-stone-100 pt-3">
+        <p className="text-xs font-medium tracking-wide uppercase text-stone-400 mb-2">Session schedule</p>
+        <div className="divide-y divide-stone-100">
+          {cohort.sessions.map((session, i) => (
+            <div key={session.startUtc} className="flex items-center gap-2 py-2.5">
+              <span className="text-xs font-medium text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded flex-shrink-0 w-16 text-center">
+                {session.label}
+              </span>
+              <span className="text-xs font-medium text-slate-700 flex-shrink-0 w-24">{session.day}</span>
+              <span className="text-xs text-stone-400 flex items-center gap-1 flex-1">
+                <Clock size={10} /> 4pm AZ / 7pm ET
+              </span>
+              <CalDropdown
+                session={session}
+                label={session.label}
+                filename={`session${i + 1}-${session.day.toLowerCase().replace(/[, ]+/g, '-')}`}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 }
