@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { CheckCircle, Calendar, Clock, ExternalLink, Mail, Linkedin } from 'lucide-react';
+import { CheckCircle, Calendar, Clock, ExternalLink, Mail, Link2 } from 'lucide-react';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -318,7 +318,7 @@ export default function WorkshopConfirmPage() {
           </a>{' '}
           or on{' '}
           <a href="https://linkedin.com/in/jstgelais" target="_blank" rel="noopener noreferrer" className="text-amber-700 hover:underline inline-flex items-center gap-1">
-            <Linkedin size={13} /> LinkedIn
+            <Link2 size={13} /> LinkedIn
           </a>. Jason personally reads every message.
         </div>
 
@@ -379,5 +379,6 @@ TAILWIND COLORS USED:
 
 ═══════════════════════════════════════════════════════════════════════
 */
+
 
 
