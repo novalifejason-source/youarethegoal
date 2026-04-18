@@ -31,7 +31,7 @@ const COHORTS: Cohort[] = [
     badge: 'COHORT 1',
     title: 'Starts April 28',
     startLabel: 'Tuesday, April 28 at 4pm AZ / 7pm ET',
-    calendlyPath: 'workshop-cohort1',
+    calendlyPath: 'you-are-the-goal-workshop',
     sessions: [
       { day: 'Tue, Apr 28', date: 'Session 1', label: 'Session 1', startUtc: '20260428T230000Z', endUtc: '20260429T000000Z' },
       { day: 'Wed, Apr 29', date: 'Session 2', label: 'Session 2', startUtc: '20260429T230000Z', endUtc: '20260430T000000Z' },
@@ -45,7 +45,7 @@ const COHORTS: Cohort[] = [
     badge: 'COHORT 2',
     title: 'Starts May 12',
     startLabel: 'Tuesday, May 12 at 4pm AZ / 7pm ET',
-    calendlyPath: 'workshop-cohort2',
+    calendlyPath: 'you-are-the-goal-workshop-c1-clone',
     sessions: [
       { day: 'Tue, May 12', date: 'Session 1', label: 'Session 1', startUtc: '20260512T230000Z', endUtc: '20260513T000000Z' },
       { day: 'Wed, May 13', date: 'Session 2', label: 'Session 2', startUtc: '20260513T230000Z', endUtc: '20260514T000000Z' },
@@ -379,4 +379,5 @@ TAILWIND COLORS USED:
 
 ═══════════════════════════════════════════════════════════════════════
 */
+
 
